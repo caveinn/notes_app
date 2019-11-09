@@ -36,48 +36,120 @@ class _NotesHomepageState extends State<NotesHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
-        appBar: AppBar(
-          elevation: 0,
-          title: Text("Notes"),
-        ),
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Container(
-                  height: 100,
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          child: TextField(
-                            style: TextStyle(
-                            
-                            ),
-                            decoration: InputDecoration(
-                                fillColor: Colors.white, filled: true,
-                                focusedBorder: InputBorder.none
-                                ),
-                                
-                          ),
-                        ),
-                      )
-                    ],
+          backgroundColor: Theme.of(context).primaryColor,
+          appBar: PreferredSize(
+            preferredSize: Size(MediaQuery.of(context).size.width, 1000.0),
+            child:Container(
+              padding:EdgeInsets.only(top:MediaQuery.of(context).padding.top),
+              height: 100,
+              decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.blue,
+                          Colors.blue[900]
+                        ])
+                    ), 
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left:20.0),
+                    child: Text("My Notes", 
+                    style: TextStyle(color:Colors.white, fontSize: 20, fontWeight: FontWeight.bold ),
+                    ),
                   ),
-                )
-              ]),
-            ),
-            SliverFillRemaining(
-                child: Container(
+
+                  Padding(
+                    padding: const EdgeInsets.only(right:20.0),
+                    child: CircleAvatar(
+                      radius: 20,
+                      backgroundImage: NetworkImage("https://via.placeholder.com/150"),),
+                  )
+
+
+                ],
+              )
+              ),),
+  
+          body: CustomScrollView(
+            slivers: <Widget>[
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  Container(
+                    height: 100,
                     decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(10)),
-                        color: Colors.white),
-                    child: Center(child: Text("trial"))))
-          ],
-        ));
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.blue,
+                          Colors.blue[900]
+                        ])
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            child: TextField(
+                              style: TextStyle(
+                              
+                              ),
+                              decoration: InputDecoration(
+                                  fillColor: Colors.indigo, 
+                                  filled: true,
+                                  focusedBorder: InputBorder.none,
+                                  prefixIcon: Icon(Icons.search),
+                                  hintText: "Type text to search her",
+                                  ),
+                                  
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ]),
+              ),
+              SliverFillRemaining(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(30)),
+                          color: Colors.white),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                         Container(
+                           padding: EdgeInsets.only(left: 20, top: 20),
+                           child: Text("Folder", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold ),)
+                           ),
+                         Expanded(
+                            child: ListView.builder(
+                             itemCount: 100,
+                             itemBuilder: (context, index){
+                               return ListTile(
+                                 leading: Padding(
+                                   padding: const EdgeInsets.only(right: 20.0),
+                                   child: Icon(
+                                     Icons.folder,
+                                     size: 40,
+                                     color: Theme.of(context).primaryColor,
+                                   ),
+                                 ),
+                                 title: Text("Notes $index", style:TextStyle(fontWeight: FontWeight.bold) ,),
+                                 subtitle: Text("10 mb"),
+                                 trailing: Icon(Icons.more_vert),
+                                 
+                                 );
+                                 
+                             } ,
+                           ),
+                         )
+                        ],
+
+                      )))
+            ],
+          ),
+    );
   }
 }
