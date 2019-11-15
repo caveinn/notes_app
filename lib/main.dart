@@ -198,7 +198,7 @@ class RenderSliverFixed extends RenderSliverSingleBoxAdapter {
     geometry = SliverGeometry(
       paintOrigin: constraints.scrollOffset,
       scrollExtent: childExtent,
-      paintExtent: 50,
+      paintExtent: 40,
       cacheExtent: cacheExtent,
       maxPaintExtent: 50,
       hitTestExtent: paintedChildSize,
